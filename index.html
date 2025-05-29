@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ethereum Wallet Info</title>
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/main.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethereum Wallet Info</title>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css" />
 
-    <!-- Web3.js via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@4.16.0/dist/web3.min.js"></script>
-    <script src="js/config.js" defer></script>
-    <script src="js/main.js" defer></script>
+  <!-- Web3.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@4.16.0/dist/web3.min.js"></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Wallet Information</h1>
-        <div class="card">
-            <p><strong>Address:</strong></p>
-            <p id="myAddress" class="data">Loading...</p>
-        </div>
-        <div class="card">
-            <p><strong>Balance:</strong></p>
-            <p id="balance" class="data">Loading...</p>
-        </div>
+  <div class="main-container">
+    <h1 class="title">Ethereum Wallet Info</h1>
+
+    <div class="info-cards">
+      <div class="card">
+        <p class="label">Address</p>
+        <p id="myAddress" class="value">Loading...</p>
+      </div>
+
+      <div class="card">
+        <p class="label">Balance</p>
+        <p id="balance" class="value">Loading...</p>
+      </div>
+
+      <div class="card">
+        <p class="label">Recipient</p>
+        <p id="receipient" class="value">Loading...</p>
+      </div>
+
+      <div class="card">
+        <p class="label">Target Amount</p>
+        <p id="targetAmount" class="value">Loading...</p>
+      </div>
+
+      <div class="card">
+        <p class="label">Amount Left</p>
+        <p id="amountLeft" class="value">Loading...</p>
+      </div>
     </div>
+
+    <div class="progress-section">
+      <p class="label">Progress</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

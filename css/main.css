@@ -1,43 +1,79 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #141e30, #243b55);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #1f1c2c, #928dab);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
 }
 
-.container {
-    text-align: center;
-    padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+.main-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
 }
 
-h1 {
-    margin-bottom: 2rem;
-    font-size: 2rem;
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #ffe082;
+}
+
+.info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .card {
-    margin-bottom: 1.5rem;
-    padding: 1rem 2rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    backdrop-filter: blur(4px);
+  padding: 1rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-.data {
-    font-size: 1.1rem;
-    word-break: break-all;
-    margin-top: 0.5rem;
-    color: #ffdd57;
+.label {
+  font-weight: bold;
+  color: #fbc02d;
+  font-size: 1rem;
+}
+
+.value {
+  font-size: 1.1rem;
+  color: #fff;
+  word-break: break-word;
+}
+
+.progress-section {
+  margin-top: 2rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 25px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  box-shadow: inset 0 0 10px #000;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  transition: width 1.5s ease-out;
 }
