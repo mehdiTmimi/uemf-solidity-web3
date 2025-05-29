@@ -25,10 +25,30 @@ const main = async () => {
     const left = await contract.methods.amountLeft().call(); // changed to amountLeft()
 
     receipient.innerText = recipient;
-    targetAmount.innerText = parseInt(target)/10**18 + " ETH";
-    amountLeft.innerText =  parseInt(left)/10**18 + " ETH";
+    targetAmount.innerText = parseInt(target) / 10 ** 18 + " ETH";
+    amountLeft.innerText = parseInt(left) / 10 ** 18 + " ETH";
 
     updateProgressBar(target, left);
+
+
+
+    amountToDonateInput.addEventListener('input', () => {
+        let value = amountToDonateInput.value / 10 ** 18
+        spanEth.innerText = value + " ETH"
+    })
+    donateBtn.addEventListener('click', () => {
+        let value = amountToDonateInput.value
+        contract.methods.donate().send({
+            from : account,
+            value
+        }).then(()=>{
+            // update UI
+        })
+        .catch(e=>{
+            alert("transaction failed")
+            console.error(e)
+        })
+    })
 };
 
 // Progress Bar Update
