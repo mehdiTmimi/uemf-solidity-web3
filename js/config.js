@@ -1,6 +1,5 @@
-const contractAddr = "0x213F8fe74Fa5b7011160be6ee31f9078a068F53B"
-const ABI = 
-[
+const contractAddr = "0xEb14bcC00b5c284CA9e40Cdbcc2E64fa815D48D3"
+const ABI = [
 		{
 			"inputs": [
 				{
@@ -16,6 +15,18 @@ const ABI =
 			],
 			"stateMutability": "nonpayable",
 			"type": "constructor"
+		},
+		{
+			"anonymous": false,
+			"inputs": [],
+			"name": "Closed",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [],
+			"name": "Donated",
+			"type": "event"
 		},
 		{
 			"stateMutability": "payable",

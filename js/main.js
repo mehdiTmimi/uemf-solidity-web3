@@ -21,9 +21,11 @@ const main = async () => {
     const contract = new web3.eth.Contract(ABI, contractAddr);
 
     const recipient = await contract.methods.receipient().call();
+    console.log(recipient)
     const target = await contract.methods.getTargetAmount().call();
+    console.log(target)
     const left = await contract.methods.amountLeft().call(); // changed to amountLeft()
-
+    console.log(left)
     receipient.innerText = recipient;
     targetAmount.innerText = parseInt(target) / 10 ** 18 + " ETH";
     amountLeft.innerText = parseInt(left) / 10 ** 18 + " ETH";
@@ -39,15 +41,26 @@ const main = async () => {
     donateBtn.addEventListener('click', () => {
         let value = amountToDonateInput.value
         contract.methods.donate().send({
-            from : account,
+            from: account,
             value
-        }).then(()=>{
+        }).then(() => {
             // update UI
         })
-        .catch(e=>{
-            alert("transaction failed")
-            console.error(e)
+            .catch(e => {
+                alert("transaction failed")
+                console.error(e)
+            })
+    })
+    redeemBtn.addEventListener('click', () => {
+        contract.methods.redeem().send({
+            from: account
+        }).then(() => {
+            alert("success")
         })
+            .catch(e => {
+                alert("transaction failed")
+                console.error(e)
+            })
     })
 };
 
