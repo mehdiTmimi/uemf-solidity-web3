@@ -10,10 +10,9 @@ const main = async () => {
 
     const accounts = await web3.eth.getAccounts();
     const account = accounts[0];
-    const balanceWei = await web3.eth.getBalance(account);
-    const balanceEth = parseFloat(web3.utils.fromWei(balanceWei, "ether")).toFixed(4);
 
-    document.getElementById("balance").innerText = `${balanceEth} ETH`;
+    refreshMyBalance(web3,account);
+  
     document.getElementById("myAddress").innerText = account;
 
     // Ensure these are declared in your config.js
@@ -24,13 +23,10 @@ const main = async () => {
     console.log(recipient)
     const target = await contract.methods.getTargetAmount().call();
     console.log(target)
-    const left = await contract.methods.amountLeft().call(); // changed to amountLeft()
-    console.log(left)
+   
     receipient.innerText = recipient;
-    targetAmount.innerText = parseInt(target) / 10 ** 18 + " ETH";
-    amountLeft.innerText = parseInt(left) / 10 ** 18 + " ETH";
 
-    updateProgressBar(target, left);
+    updateUI(contract,target);
 
 
 
@@ -62,6 +58,16 @@ const main = async () => {
                 console.error(e)
             })
     })
+    contract.events.Donated({}).on('data',()=>{
+        updateUI(contract,target);
+    })
+    contract.events.Closed({}).on('data',()=>{
+       document.body.innerHTML = "<h1>donations are closed . thank you</h1>"
+    })
+    contract.methods.receipient().call().then((addressRecipient)=>{
+        if(addressRecipient!=account)
+            redeemBtn.remove()
+    })
 };
 
 // Progress Bar Update
@@ -75,4 +81,18 @@ function updateProgressBar(targetWei, leftWei) {
     progressFill.style.width = `${Math.min(percentage, 100)}%`;
 }
 
+const refreshMyBalance = async (web3,account) => {
+    const balanceWei = await web3.eth.getBalance(account);
+    const balanceEth = parseFloat(web3.utils.fromWei(balanceWei, "ether")).toFixed(4);
+    document.getElementById("balance").innerText = `${balanceEth} ETH`;
+}
+const updateUI = async (contract,target)=>{
+    const left = await contract.methods.amountLeft().call(); // changed to amountLeft()
+    console.log(left)
+    targetAmount.innerText = parseInt(target) / 10 ** 18 + " ETH";
+    amountLeft.innerText = parseInt(left) / 10 ** 18 + " ETH";
+
+    updateProgressBar(target, left);
+}
 main();
+
